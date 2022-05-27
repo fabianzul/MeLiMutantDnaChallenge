@@ -1,0 +1,89 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > DnaRepository</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.meli.challenge.dna.repository</a>
+</div>
+
+<h1>Coverage Summary for Class: DnaRepository (com.meli.challenge.dna.repository)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+</tr>
+  <tr>
+    <td class="name">DnaRepository$MockitoMock$dDuAKwVm</td>
+  </tr>
+  <tr>
+    <td class="name">DnaRepository$MockitoMock$dDuAKwVm$auxiliary$4LF6iYxF</td>
+  </tr>
+  <tr>
+    <td class="name">DnaRepository$MockitoMock$dDuAKwVm$auxiliary$x9v93IuP</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.meli.challenge.dna.repository;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.meli.challenge.dna.model.Dna;
+<i class="no-highlight">4</i>&nbsp;import org.springframework.data.mongodb.repository.MongoRepository;
+<i class="no-highlight">5</i>&nbsp;
+<i class="no-highlight">6</i>&nbsp;public interface DnaRepository extends MongoRepository&lt;Dna, String&gt; {
+<i class="no-highlight">7</i>&nbsp;    //query to get statistics with project
+<i class="no-highlight">8</i>&nbsp;    int countByType(Boolean type);
+<i class="no-highlight">9</i>&nbsp;    boolean existsByDna(String[] dna);
+<i class="no-highlight">10</i>&nbsp;
+<i class="no-highlight">11</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-05-27 09:40</div>
+</div>
+</body>
+</html>

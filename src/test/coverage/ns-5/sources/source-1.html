@@ -1,0 +1,223 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > DnaServiceImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.meli.challenge.dna.service</a>
+</div>
+
+<h1>Coverage Summary for Class: DnaServiceImpl (com.meli.challenge.dna.service)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DnaServiceImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (9/9)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    96,9%
+  </span>
+  <span class="absValue">
+    (63/65)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.meli.challenge.dna.service;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.meli.challenge.dna.dto.StatsDTO;
+<i class="no-highlight">4</i>&nbsp;import com.meli.challenge.dna.model.Dna;
+<i class="no-highlight">5</i>&nbsp;import com.meli.challenge.dna.repository.DnaRepository;
+<i class="no-highlight">6</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i class="no-highlight">7</i>&nbsp;import org.springframework.stereotype.Service;
+<i class="no-highlight">8</i>&nbsp;
+<i class="no-highlight">9</i>&nbsp;import java.util.List;
+<i class="no-highlight">10</i>&nbsp;
+<i class="no-highlight">11</i>&nbsp;
+<i class="no-highlight">12</i>&nbsp;@Service
+<b class="fc"><i class="no-highlight">13</i>&nbsp;public class DnaServiceImpl implements DnaService {</b>
+<b class="fc"><i class="no-highlight">14</i>&nbsp;</b>
+<i class="no-highlight">15</i>&nbsp;    @Autowired
+<i class="no-highlight">16</i>&nbsp;    private DnaRepository dnaRepository;
+<i class="no-highlight">17</i>&nbsp;
+<i class="no-highlight">18</i>&nbsp;    @Override
+<i class="no-highlight">19</i>&nbsp;    public List&lt;Dna&gt; findAll() {
+<b class="fc"><i class="no-highlight">20</i>&nbsp;        return dnaRepository.findAll();</b>
+<b class="fc"><i class="no-highlight">21</i>&nbsp;    }</b>
+<i class="no-highlight">22</i>&nbsp;
+<i class="no-highlight">23</i>&nbsp;    @Override
+<i class="no-highlight">24</i>&nbsp;    public boolean existsByDna(String[] dna) {
+<b class="fc"><i class="no-highlight">25</i>&nbsp;        return dnaRepository.existsByDna(dna);</b>
+<b class="fc"><i class="no-highlight">26</i>&nbsp;    }</b>
+<i class="no-highlight">27</i>&nbsp;
+<i class="no-highlight">28</i>&nbsp;    @Override
+<i class="no-highlight">29</i>&nbsp;    public Dna saveOrUpdateDna(Dna dna) {
+<b class="nc"><i class="no-highlight">30</i>&nbsp;        if(!existsByDna(dna.getDna())){</b>
+<b class="fc"><i class="no-highlight">31</i>&nbsp;            return dnaRepository.save(dna);</b>
+<b class="fc"><i class="no-highlight">32</i>&nbsp;        }else{</b>
+<b class="nc"><i class="no-highlight">33</i>&nbsp;            return dna;</b>
+<b class="fc"><i class="no-highlight">34</i>&nbsp;        }</b>
+<i class="no-highlight">35</i>&nbsp;    }
+<i class="no-highlight">36</i>&nbsp;
+<i class="no-highlight">37</i>&nbsp;    @Override
+<i class="no-highlight">38</i>&nbsp;    public int countByType(Boolean type) {
+<b class="fc"><i class="no-highlight">39</i>&nbsp;        return dnaRepository.countByType(type);</b>
+<b class="fc"><i class="no-highlight">40</i>&nbsp;    }</b>
+<i class="no-highlight">41</i>&nbsp;
+<i class="no-highlight">42</i>&nbsp;    @Override
+<i class="no-highlight">43</i>&nbsp;    public boolean validateDnaBases(String[] dnaArray) {
+<b class="fc"><i class="no-highlight">44</i>&nbsp;        for (int i = 0; i &lt; dnaArray.length - 1; i++) {</b>
+<b class="fc"><i class="no-highlight">45</i>&nbsp;            if (!dnaArray[i].matches(&quot;^[ATGC]+$&quot;)) {</b>
+<b class="fc"><i class="no-highlight">46</i>&nbsp;                return false;</b>
+<b class="fc"><i class="no-highlight">47</i>&nbsp;            }</b>
+<b class="fc"><i class="no-highlight">48</i>&nbsp;            if (dnaArray[i].length() != dnaArray.length) {</b>
+<b class="fc"><i class="no-highlight">49</i>&nbsp;                return false;</b>
+<b class="fc"><i class="no-highlight">50</i>&nbsp;            }</b>
+<i class="no-highlight">51</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">52</i>&nbsp;        return true;</b>
+<b class="fc"><i class="no-highlight">53</i>&nbsp;    }</b>
+<i class="no-highlight">54</i>&nbsp;
+<i class="no-highlight">55</i>&nbsp;    @Override
+<i class="no-highlight">56</i>&nbsp;    public Dna verifyMutantDna(String[] dna) {
+<b class="fc"><i class="no-highlight">57</i>&nbsp;        return new Dna(dna, isMutant(dna));</b>
+<b class="fc"><i class="no-highlight">58</i>&nbsp;    }</b>
+<i class="no-highlight">59</i>&nbsp;
+<i class="no-highlight">60</i>&nbsp;    @Override
+<i class="no-highlight">61</i>&nbsp;    public StatsDTO getStats() {
+<b class="fc"><i class="no-highlight">62</i>&nbsp;        int count_mutant_dna = dnaRepository.countByType(true);</b>
+<b class="fc"><i class="no-highlight">63</i>&nbsp;        int count_human_dna = dnaRepository.countByType(false);</b>
+<b class="fc"><i class="no-highlight">64</i>&nbsp;        float ratio = (float) count_mutant_dna/count_human_dna;</b>
+<b class="fc"><i class="no-highlight">65</i>&nbsp;        return new StatsDTO(count_mutant_dna,count_human_dna,ratio);</b>
+<b class="fc"><i class="no-highlight">66</i>&nbsp;    }</b>
+<i class="no-highlight">67</i>&nbsp;
+<i class="no-highlight">68</i>&nbsp;
+<i class="no-highlight">69</i>&nbsp;    /**
+<i class="no-highlight">70</i>&nbsp;     * Método que recorre un array con la información del DNA y evalúa si existe más de una secuencia de 4 bases nitrogenadas iguales (horizonta, vertical y oblicua)
+<i class="no-highlight">71</i>&nbsp;     * Se usan índices diferentes en cada condición para manejar el recorrido sin desbordar el array.
+<i class="no-highlight">72</i>&nbsp;     *
+<i class="no-highlight">73</i>&nbsp;     * @param dnaArray
+<i class="no-highlight">74</i>&nbsp;     * @return
+<i class="no-highlight">75</i>&nbsp;     */
+<i class="no-highlight">76</i>&nbsp;    private boolean isMutant(String[] dnaArray) {
+<b class="fc"><i class="no-highlight">77</i>&nbsp;        int diagonalMatches = 0;</b>
+<b class="fc"><i class="no-highlight">78</i>&nbsp;        int horizontalMatches = 0;</b>
+<b class="fc"><i class="no-highlight">79</i>&nbsp;        int verticalMatches = 0;</b>
+<b class="fc"><i class="no-highlight">80</i>&nbsp;        int length = dnaArray.length;</b>
+<b class="fc"><i class="no-highlight">81</i>&nbsp;        int repeat = 4;</b>
+<b class="fc"><i class="no-highlight">82</i>&nbsp;</b>
+<b class="fc"><i class="no-highlight">83</i>&nbsp;        for (int i = 0, j = 0, k = 0; i &lt; length || j &lt; length || k &lt; length; i++, j++, k++) {</b>
+<b class="fc"><i class="no-highlight">84</i>&nbsp;            for (int x = 0, y = 0, z = 0; x &lt; length || y &lt; length || z &lt; length; x++, y++, z++) {</b>
+<b class="fc"><i class="no-highlight">85</i>&nbsp;                if (x &lt; length - 3) {</b>
+<b class="fc"><i class="no-highlight">86</i>&nbsp;                    if (dnaArray[i].charAt(x) == dnaArray[i].charAt(x + 1)</b>
+<b class="fc"><i class="no-highlight">87</i>&nbsp;                            &amp;&amp; dnaArray[i].charAt(x) == dnaArray[i].charAt(x + 2)</b>
+<b class="fc"><i class="no-highlight">88</i>&nbsp;                            &amp;&amp; dnaArray[i].charAt(x) == dnaArray[i].charAt(x + 3)) {</b>
+<b class="fc"><i class="no-highlight">89</i>&nbsp;                        horizontalMatches++;</b>
+<b class="fc"><i class="no-highlight">90</i>&nbsp;                        x += 3;</b>
+<b class="fc"><i class="no-highlight">91</i>&nbsp;                    }</b>
+<i class="no-highlight">92</i>&nbsp;                }
+<b class="fc"><i class="no-highlight">93</i>&nbsp;                if (y &lt; length - 3) {</b>
+<b class="fc"><i class="no-highlight">94</i>&nbsp;                    if (dnaArray[y].charAt(j) == dnaArray[y + 1].charAt(j)</b>
+<b class="fc"><i class="no-highlight">95</i>&nbsp;                            &amp;&amp; dnaArray[y].charAt(j) == dnaArray[y + 2].charAt(j)</b>
+<b class="fc"><i class="no-highlight">96</i>&nbsp;                            &amp;&amp; dnaArray[y].charAt(j) == dnaArray[y + 3].charAt(j)) {</b>
+<b class="fc"><i class="no-highlight">97</i>&nbsp;                        verticalMatches++;</b>
+<b class="fc"><i class="no-highlight">98</i>&nbsp;                        y += 3;</b>
+<b class="fc"><i class="no-highlight">99</i>&nbsp;                    }</b>
+<i class="no-highlight">100</i>&nbsp;                }
+<b class="fc"><i class="no-highlight">101</i>&nbsp;                if (k &lt; length - 3 &amp;&amp; z &lt; length - 3) {</b>
+<b class="fc"><i class="no-highlight">102</i>&nbsp;                    char[] dnaSequence = new char[repeat];</b>
+<b class="fc"><i class="no-highlight">103</i>&nbsp;                    char[] dnaSequenceInverse = new char[repeat];</b>
+<b class="fc"><i class="no-highlight">104</i>&nbsp;                    for (int counter = 0; counter &lt; repeat; counter++) {</b>
+<b class="fc"><i class="no-highlight">105</i>&nbsp;                        dnaSequence[counter] = dnaArray[k + counter].charAt(z + counter);</b>
+<b class="fc"><i class="no-highlight">106</i>&nbsp;                        dnaSequenceInverse[counter] = dnaArray[((dnaArray.length - 1) - k) - counter].charAt(z + counter);</b>
+<b class="fc"><i class="no-highlight">107</i>&nbsp;                    }</b>
+<b class="fc"><i class="no-highlight">108</i>&nbsp;                    if (String.valueOf(dnaSequence).matches(&quot;(.)\\1+&quot;) || String.valueOf(dnaSequenceInverse).matches(&quot;(.)\\1+&quot;)) {</b>
+<b class="fc"><i class="no-highlight">109</i>&nbsp;                        diagonalMatches++;</b>
+<b class="fc"><i class="no-highlight">110</i>&nbsp;                    }</b>
+<i class="no-highlight">111</i>&nbsp;                }
+<i class="no-highlight">112</i>&nbsp;            }
+<i class="no-highlight">113</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">114</i>&nbsp;        int repeatSum = diagonalMatches + horizontalMatches + verticalMatches;</b>
+<b class="fc"><i class="no-highlight">115</i>&nbsp;        System.out.println(repeatSum);</b>
+<b class="fc"><i class="no-highlight">116</i>&nbsp;        return repeatSum &gt; 1;</b>
+<b class="fc"><i class="no-highlight">117</i>&nbsp;    }</b>
+<i class="no-highlight">118</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-05-27 09:40</div>
+</div>
+</body>
+</html>

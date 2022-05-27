@@ -1,0 +1,151 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > DnaRestController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.meli.challenge.dna.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: DnaRestController (com.meli.challenge.dna.controller)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">DnaRestController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (4/4)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    72,7%
+  </span>
+  <span class="absValue">
+    (8/11)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.meli.challenge.dna.controller;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.meli.challenge.dna.dto.DnaDTO;
+<i class="no-highlight">4</i>&nbsp;import com.meli.challenge.dna.dto.StatsDTO;
+<i class="no-highlight">5</i>&nbsp;import com.meli.challenge.dna.model.Dna;
+<i class="no-highlight">6</i>&nbsp;import com.meli.challenge.dna.service.DnaService;
+<i class="no-highlight">7</i>&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+<i class="no-highlight">8</i>&nbsp;import org.springframework.http.ResponseEntity;
+<i class="no-highlight">9</i>&nbsp;import org.springframework.web.bind.annotation.*;
+<i class="no-highlight">10</i>&nbsp;import java.util.List;
+<i class="no-highlight">11</i>&nbsp;
+<i class="no-highlight">12</i>&nbsp;@RestController
+<i class="no-highlight">13</i>&nbsp;@RequestMapping(&quot;/dna&quot;)
+<b class="fc"><i class="no-highlight">14</i>&nbsp;public class DnaRestController {</b>
+<i class="no-highlight">15</i>&nbsp;    @Autowired
+<i class="no-highlight">16</i>&nbsp;    private DnaService dnaService;
+<i class="no-highlight">17</i>&nbsp;
+<i class="no-highlight">18</i>&nbsp;    @GetMapping(value = &quot;/&quot;)
+<i class="no-highlight">19</i>&nbsp;    public ResponseEntity&lt;List&lt;Dna&gt;&gt; getAllDnas() {
+<b class="fc"><i class="no-highlight">20</i>&nbsp;        List&lt;Dna&gt; dnaList = dnaService.findAll();</b>
+<b class="fc"><i class="no-highlight">21</i>&nbsp;        if(dnaList!=null &amp;&amp; dnaList.size()&gt;0){</b>
+<b class="fc"><i class="no-highlight">22</i>&nbsp;            return ResponseEntity.ok(dnaList);</b>
+<i class="no-highlight">23</i>&nbsp;        }else{
+<b class="nc"><i class="no-highlight">24</i>&nbsp;            return ResponseEntity.notFound().build();</b>
+<i class="no-highlight">25</i>&nbsp;        }
+<i class="no-highlight">26</i>&nbsp;    }
+<i class="no-highlight">27</i>&nbsp;
+<i class="no-highlight">28</i>&nbsp;    @PostMapping(value=&quot;/mutant&quot;)
+<i class="no-highlight">29</i>&nbsp;    public ResponseEntity&lt;?&gt; verifyMutantDna(@RequestBody DnaDTO payload) {
+<b class="fc"><i class="no-highlight">30</i>&nbsp;        if(dnaService.validateDnaBases(payload.getDna())){</b>
+<b class="fc"><i class="no-highlight">31</i>&nbsp;            if(dnaService.saveOrUpdateDna(dnaService.verifyMutantDna(payload.getDna())).getType()){</b>
+<b class="fc"><i class="no-highlight">32</i>&nbsp;                return ResponseEntity.ok().build();</b>
+<i class="no-highlight">33</i>&nbsp;            }else{
+<b class="nc"><i class="no-highlight">34</i>&nbsp;                return ResponseEntity.status(403).build();</b>
+<i class="no-highlight">35</i>&nbsp;            }
+<i class="no-highlight">36</i>&nbsp;        }else{
+<b class="nc"><i class="no-highlight">37</i>&nbsp;            return ResponseEntity.badRequest().build();</b>
+<i class="no-highlight">38</i>&nbsp;        }
+<i class="no-highlight">39</i>&nbsp;    }
+<i class="no-highlight">40</i>&nbsp;
+<i class="no-highlight">41</i>&nbsp;    @GetMapping(value = &quot;/stats&quot;)
+<i class="no-highlight">42</i>&nbsp;    public ResponseEntity&lt;StatsDTO&gt; getStats(){
+<b class="fc"><i class="no-highlight">43</i>&nbsp;        return ResponseEntity.ok(dnaService.getStats());</b>
+<i class="no-highlight">44</i>&nbsp;    }
+<i class="no-highlight">45</i>&nbsp;
+<i class="no-highlight">46</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2022-05-27 09:40</div>
+</div>
+</body>
+</html>
