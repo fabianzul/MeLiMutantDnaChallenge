@@ -25,7 +25,7 @@ public class DnaRestController {
         }
     }
 
-    @PostMapping(value="/mutant/")
+    @PostMapping(value="/mutant")
     public ResponseEntity<?> verifyMutantDna(@RequestBody DnaDTO payload) {
         if(dnaService.validateDnaBases(payload.getDna())){
             if(dnaService.saveOrUpdateDna(dnaService.verifyMutantDna(payload.getDna())).getType()){
