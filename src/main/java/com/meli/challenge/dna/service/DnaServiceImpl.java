@@ -6,7 +6,6 @@ import com.meli.challenge.dna.repository.DnaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 
 
@@ -55,7 +54,7 @@ public class DnaServiceImpl implements DnaService {
 
     @Override
     public Dna verifyMutantDna(String[] dna) {
-        return new Dna(dna, analyzeDnaArray(dna));
+        return new Dna(dna, isMutant(dna));
     }
 
     @Override
@@ -74,7 +73,7 @@ public class DnaServiceImpl implements DnaService {
      * @param dnaArray
      * @return
      */
-    private boolean analyzeDnaArray(String[] dnaArray) {
+    private boolean isMutant(String[] dnaArray) {
         int diagonalMatches = 0;
         int horizontalMatches = 0;
         int verticalMatches = 0;
