@@ -1,7 +1,5 @@
 # MeLi Challenge SpringBoot API
 
-[![Coverage Status](https://coveralls.io/repos/github/fabianzul/MeLiMutantDnaChallenge/badge.svg?branch=main)](https://coveralls.io/github/fabianzul/MeLiMutantDnaChallenge?branch=main)
-
 Proyecto realizado en [Spring Boot](http://projects.spring.io/spring-boot/) para prueba técnica.<br>
 La aplicación se comporta como una API REST donde básicamente se pueden verificar secuencias de ADN representadas en un array de strings, de manera que la API validará si la secuencia es de un humano o si se trata de un mutante. Una secuencia de ADN mutante tiene la particularidad de que en su estructura, de tipo matricial, se repiten al menos más de un grupo de 4 bases nitrogenadas consecutivas ya sea de manera vertical, horizontal u oblicua. <br>
 La API también registra un historial de cada ADN verificado que se aloja en una base de datos de MongoDB, y así disponemos de un endpoint para consultar las estadísticas de la cantidad de secuencias de ADN mutante, humano y el ratio y/o relación entre ellas.
